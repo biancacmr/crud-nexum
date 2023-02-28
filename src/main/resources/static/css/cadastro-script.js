@@ -312,17 +312,13 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            contentType: "application/json",
-            url: "/add",
-            data: JSON.stringify(formData),
+            url: "./add",
+            data: formData,
             dataType: 'json',
-            sucess: function(data) {
-                alert("Usuário cadastrado com sucesso!");
-                },
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-                }
+        }).done(function (data) {
+                console.log(data);
         });
+
 
     })
 
