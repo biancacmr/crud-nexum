@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="https://nexum.com.br/wp-content/themes/nexum/favicon.ico" type="image/x-icon">
+    <title>Editar parceiro</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/css/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/edit-script.js}"></script>
+</head>
+
+<body class="bg-white-smoke overflow-x-hidden">
+
+    <div class="container">
+        <header class="flex items-center justify-between flex-wrap w-screen h-14 bg-[#0f1759]">
+            <a class="ml-10 w-36" href="https://nexum.com.br/"><img
+                    src="https://nexum.com.br/wp-content/themes/nexum/logo-nexum.png" alt="Nexum logo"></a>
+        </header>
+
+        <main class="flex w-screen mt-8 items-center justify-center font-montserrat">
+            <div id="form" class="flex flex-col md:w-[1000px] h-auto rounded-sm shadow-lg bg-white">
+
+                <div id="form-title"
+                    class="flex items-center justify-center font-medium text-xl text-white bg-sea-green h-12 rounded-t-md">
+                    Edição de parceiro Nexum
+                </div>
+
+                <form action="" id="form-content" class="flex flex-col flex-wrap gap-4 my-8 mx-12">
+                    <div id="form-inputs" class="flex justify-between gap-10 font-montserrat">
+
+                        <div id="form-inputs-column-1" class="w-3/5 flex flex-col gap-5">
+                            <div id="name-input">
+                                <label class="block mb-2 text-md text-charcoal" for="name">Nome</label>
+                                <input type="text" name="name" id="name"
+                                    class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                                    placeholder="Digite o nome/razão social">
+                            </div>
+
+                            <div id="documents-input-group" class="flex w-full justify-between">
+                                <div id="user-type-select" class="w-[30%]">
+                                    <label for="user-type" class="block mb-2 text-md text-charcoal">Tipo de
+                                        pessoa</label>
+                                    <select name="user-type" id="user-type"
+                                        class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                                        disabled readonly>
+                                        <option value="pessoa-fisica">Pessoa Física</option>
+                                        <option value="pessoa-juridica">Pessoa Jurídica</option>
+                                    </select>
+                                </div>
+                                <div id="cpf-cnpj-input-group" class="w-auto">
+                                    <div id="cpf-input" class="w-full">
+                                        <label for="cpf" class="block mb-2 text-md text-charcoal">CPF</label>
+                                        <input type="text" name="cpf" id="cpf"
+                                            class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                                            disabled readonly>
+                                    </div>
+                                    <div id="cnpj-input" class="w-full" hidden>
+                                        <label for="cnpj" class="block mb-2 text-md text-charcoal">CNPJ</label>
+                                        <input type="text" name="cnpj" id="cnpj"
+                                            class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                                            disabled readonly>
+                                    </div>
+                                </div>
+                                <div id="cep-input" class="w-[30%]">
+                                    <label for="cep" class="block mb-2 text-md text-charcoal">CEP</label>
+                                    <input type="text" name="cep" id="cep"
+                                        class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                                        placeholder="Digite o CEP">
+                                </div>
+                            </div>
+
+                            <div id="public-place-input">
+                                <label for="public-place" class="block mb-2 text-md text-charcoal">Logradouro</label>
+                                <input type="text" name="public-place" id="public-place"
+                                    class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
+                                    disabled readonly>
+                            </div>
+
+                            <div id="city-uf-input-group" class="flex w-100% justify-between">
+                                <div id="city-input" class="w-[47.5%]">
+                                    <label for="city" class="block mb-2 text-md text-charcoal">Cidade</label>
+                                    <input type="text" name="city" id="city"
+                                        class="block w-full bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5"
+                                        disabled readonly>
+                                </div>
+                                <div id="uf-select" class="w-[47.5%]">
+                                    <label for="uf" class="block mb-2 text-md text-charcoal">UF</label>
+                                    <select name="uf" id="uf"
+                                        class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
+                                        disabled readonly>
+                                        <option value="none" selected></option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federa</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="form-inputs-column-2" class="flex flex-col gap-5 w-2/5 h-[426px]">
+                            <div id="email-input">
+                                <label for="email" class="block mb-2 text-md text-charcoal">E-mail</label>
+                                <input type="email" name="email" id="email"
+                                    class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                                    placeholder="Digite o E-mail">
+                            </div>
+
+                            <div id="number-input">
+                                <label for="number" class="block mb-2 text-md text-charcoal">Número
+                                    (residência/prédio)</label>
+                                <input type="text" name="number" id="number"
+                                    class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                                    placeholder="Ex: 225">
+                            </div>
+
+                            <div id="neighborhood-input">
+                                <label for="neighborhood" class="block mb-2 text-md text-charcoal">Bairro</label>
+                                <input type="text" name="neighborhood" id="neighborhood"
+                                    class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
+                                    disabled readonly>
+                            </div>
+
+                            <div id="form-buttons" class="flex justify-between mt-auto w-full text-md font-medium">
+                                <button type="submit" id="submit-btn"
+                                    class="bg-sea-green shadow-md text-white rounded-lg w-[150px] px-10 py-2.5 text-center transition-colors duration-200 hover:bg-dark-sea-green">Salvar</button>
+                                <button id="cancel-changes-btn" type="button"
+                                    class="border shadow-sm border-sea-green text-sea-green rounded-lg w-[150px] px-10 py-2.5 text-center transition-colors duration-200 hover:text-white hover:border-white hover:bg-sea-green">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+
+        </main>
+
+        <footer></footer>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

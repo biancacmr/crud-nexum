@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Parceiros | Visualizar</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap"
+          rel="stylesheet">
+    <link rel="icon" href="https://nexum.com.br/wp-content/themes/nexum/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+</head>
+<body class="bg-white-smoke overflow-x-hidden">
+
+  <div class="w-screen">
+    <!-- navigation bar -->
+    <header class="flex items-center justify-between flex-wrap w-screen h-14 bg-[#0f1759]">
+      <a class="ml-10 w-36" href="https://nexum.com.br/"><img
+              src="https://nexum.com.br/wp-content/themes/nexum/logo-nexum.png" alt="Nexum logo"></a>
+      <nav>
+        <ul class="flex gap-10 mr-10 text-white font-montserrat text-md font-medium">
+          <li class="text-sea-green"><a href="#">Visualizar</a></li>
+          <li class="transition-colors duration-200 hover:text-sea-green"><a
+                  href="cadastro">Cadastrar</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="flex w-screen my-8 items-center justify-center font-montserrat">
+
+      <!-- centered white box -->
+      <div id="page-content" class="flex flex-col w-[1200px] h-auto bg-white rounded-sm shadow-lg">
+        <!-- white box green title -->
+        <div id="box-title"
+             class="flex w-full items-center justify-center font-medium text-xl text-white bg-sea-green h-12 rounded-t-md">
+          <h1>Parceiros Nexum</h1>
+        </div>
+
+        <div id="box-content" class="flex flex-col gap-8 my-10 mb-12 mx-12">
+          <div id="row-1-search-filter" class="flex flex-row gap-32">
+            <div id="col-search" class="flex w-full justify-between">
+              <!-- search field -->
+              <div class="relative w-full" id="table-search">
+                                  <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                      <button type="submit" class="p-1 focus:outline-none focus:shadow-outline">
+                                        <svg fill="none" stroke="#768193" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                      </button>
+                                    </span>
+                <input type="search" name="table-search" id="table-search"
+                       class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 pl-12 focus:border-light-sea-green focus:ring-light-sea-green focus:outline-none focus:ring focus:ring-opacity-40"
+                       placeholder="Pesquisar">
+              </div>
+            </div>
+
+            <div id="col-filter-register" class="flex gap-6">
+              <!-- type of user filter select -->
+              <div id="filter-select">
+                <select name="filter-search" id="filter-search"
+                        class="block bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg w-[180px] p-2.5 font-medium focus:border-light-sea-green focus:ring-light-sea-green focus:outline-none focus:ring focus:ring-opacity-40">
+                  <option value="pessoa-fisica">Pessoas Físicas</option>
+                  <option value="pessoa-juridica">Pessoas Jurídicas</option>
+                  <option value="all-users" selected>Todos</option>
+                </select>
+              </div>
+              <!-- go to register page button -->
+              <div id="register-button" class="self-end">
+                <a href="cadastro">
+                  <button type="submit"
+                          class="flex shadow-md justify-between items-center bg-sea-green text-white rounded-xl w-[180px] px-8 py-[9px] text-center font-medium transition-colors duration-200 hover:bg-dark-sea-green">
+                    <ion-icon name="person-add-outline" class="text-white h-5 w-6"></ion-icon>
+                    Cadastrar
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- table -->
+          <div id="row-2-table" class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
+            <table class="table-auto w-full border-collapse bg-white text-left text-md text-table-title">
+
+              <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-4 font-normal text-table-title">Nome</th>
+                <th scope="col" class="px-6 py-4 font-normal text-table-title">CPF/CNPJ</th>
+                <th scope="col" class="px-6 py-4 font-normal text-table-title">E-mail</th>
+                <th scope="col" class="px-6 py-4 font-normal text-table-title"></th>
+              </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+              <tr th:each="parc : ${parceiro}" class="transition-colors duration-200 hover:bg-gray-50">
+                <td>
+                  <span th:text="${parc.name}" class="px-6 py-4 font-regular text-charcoal"></span>
+                </td>
+                <td><span th:text="${parc.cpf}" class="px-6 py-4 font-regular text-charcoal"></span></td>
+                <td class="px-6 py-4 font-regular text-charcoal"><span th:text="${parc.email}"></span></td>
+                <td class="flex w-auto justify-end gap-4 px-6 py-4 font-regular text-charcoal">
+                  <a x-data="{ tooltip: 'Delete' }" href="#">
+                    <svg data-modal-target="popup-modal" data-modal-toggle="popup-modal" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke-width="1.5" stroke="currentColor"
+                         class="h-6 w-6 transition-colors duration-200 hover:stroke-sea-green"
+                         x-tooltip="tooltip">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                    </svg>
+                  </a>
+                  <a x-data="{ tooltip: 'Edite' }" href="edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke-width="1.5" stroke="currentColor"
+                         class="h-6 w-6 transition-colors duration-200 hover:stroke-sea-green"
+                         x-tooltip="tooltip">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                    </svg>
+                  </a>
+                  <a href="#"><ion-icon
+                          class="text-charcoal h-[25px] w-[25px] transition-colors duration-200 hover:text-sea-green"
+                          name="information-circle-outline"></ion-icon></a>
+                </td>
+              </tr>
+
+              </tbody>
+
+            </table>
+          </div>
+
+          <!-- table navigation buttons -->
+          <div id="row-4-nav-buttons" class="flex items-center justify-between w-full">
+            <div>Página <span class="font-semibold text-sea-green sel">1 de 10</span></div>
+            <div class="flex gap-10 font-medium text-charcoal">
+              <button
+                      class="flex items-center justify-between transition-colors duration-200 hover:text-sea-green shadow-sm hover:border-sea-green border-gray-400 w-[180px] border-[1px] rounded-xl py-2.5 px-8"><ion-icon
+                      name="arrow-back-outline" class="h-6 w-6"></ion-icon>Anterior</button>
+              <button
+                      class="flex items-center justify-between hover:text-sea-green shadow-sm transition-colors duration-200 hover:border-sea-green border-gray-400 w-[180px] border-[1px] rounded-xl py-2.5 px-8">Próxima<ion-icon
+                      name="arrow-forward-outline" class="h-6 w-6"></ion-icon></button>
+            </div>
+          </div>
+      </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
