@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ParceiroRepository extends JpaRepository<Parceiro, Integer> {
+    List<Parceiro> findById(Parceiro parceiro);
 
 }

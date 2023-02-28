@@ -20,25 +20,14 @@ public class Parceiro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotNull
     private String name;
-    @NotNull
     private String email;
-
-    private enum userType{pessoa_fisica, pessoa_juridica};
-
     private String cpf;
-    private String cnpj;
-    @NotNull
     private String cep;
-    @NotNull
     private String houseNumber;
-    @NotNull
     private String logradouro;
-    @NotNull
     private String city;
     private String UF;
-    @NotNull
     private String bairro;
 
 }

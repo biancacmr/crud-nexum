@@ -296,4 +296,34 @@ $(document).ready(function () {
         $('#number').css("--tw-ring-color", "#00e0d1");
     })
 
+    $(".form-content").submit(function(event) {
+        event.preventDefault();
+
+        var formData = {
+            name: $(".name").val(),
+            email: $(".email").val(),
+            cpf: $(".cpf").val(),
+            cep: $(".cep").val(),
+            logradouro: $(".public-place").val(),
+            city: $(".city").val(),
+            bairro: $(".neighbourhood").val(),
+            houseNumber: $(".number").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/add",
+            data: JSON.stringify(formData),
+            dataType: 'json',
+            sucess: function(data) {
+                alert("Usuário cadastrado com sucesso!");
+                },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                }
+        });
+
+    })
+
 })

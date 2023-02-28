@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,7 +29,7 @@ public class ParceiroController {
 
     // Adiciona novo parceiro
     @PostMapping("/add")
-    public String novo(@Valid Parceiro parceiro, BindingResult result) {
+    public String createParceiro(@Valid Parceiro parceiro, BindingResult result) {
 
         if (result.hasFieldErrors()) {
             return "redirect:/cadastro";
@@ -39,7 +41,7 @@ public class ParceiroController {
     }
 
     // Acessa o formulario de edição
-    @GetMapping("visualizar/{id}")
+    @GetMapping("edit/{id}")
     public String updateForm(Model model, @PathVariable(name = "id") int id) {
 
         Parceiro parceiro = parcRepository.findById(id)
@@ -69,7 +71,7 @@ public class ParceiroController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 
         parcRepository.delete(parceiro);
-        return "redirect:/home";
+        return "redirect:/visualizar";
     }
 
 }

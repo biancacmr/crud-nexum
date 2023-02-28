@@ -32,7 +32,7 @@
                     Edição de parceiro Nexum
                 </div>
 
-                <form action="" id="form-content" class="flex flex-col flex-wrap gap-4 my-8 mx-12">
+                <form action="/visualizar" th:object="${parceiro}" th:action="@{/update/{id}(id=${parceiro.id})}" method="post" id="form-content" class="flex flex-col flex-wrap gap-4 my-8 mx-12">
                     <div id="form-inputs" class="flex justify-between gap-10 font-montserrat">
 
                         <div id="form-inputs-column-1" class="w-3/5 flex flex-col gap-5">
