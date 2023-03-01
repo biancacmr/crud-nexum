@@ -22,13 +22,6 @@ public class IndexController {
     @Autowired
     private ParceiroRepository parcRepository;
 
-    //@GetMapping({"/visualizar", "/"})
-    //public ModelAndView getAllParceiros() {
-    //    ModelAndView mav = new ModelAndView("index");
-     //   mav.addObject("parceiro", parcRepository.findAll());
-    //    return mav;
-    //}
-
     @GetMapping({"/visualizar", "/"})
     public String index(Model model) {
         List<Parceiro> parceiro = parcRepository.findAll();

@@ -85,7 +85,8 @@
               <thead class="bg-gray-50">
               <tr>
                 <th scope="col" class="px-6 py-4 font-normal text-table-title">Nome</th>
-                <th scope="col" class="px-6 py-4 font-normal text-table-title">CPF/CNPJ</th>
+                <th scope="col" class="px-6 py-4 font-normal text-table-title">CPF</th>
+                <th scope="col" class="px-6 py-4 font-normal text-table-title">CNPJ</th>
                 <th scope="col" class="px-6 py-4 font-normal text-table-title">E-mail</th>
                 <th scope="col" class="px-6 py-4 font-normal text-table-title"></th>
               </tr>
@@ -96,8 +97,15 @@
                 <td>
                   <span th:text="${parc.name}" class="px-6 py-4 font-regular text-charcoal"></span>
                 </td>
-                <td><span th:text="${parc.cpf}" class="px-6 py-4 font-regular text-charcoal"></span></td>
-                <td class="px-6 py-4 font-regular text-charcoal"><span th:text="${parc.email}"></span></td>
+                <td>
+                  <span th:text="${parc.cpf}" class="px-6 py-4 font-regular text-charcoal"></span>
+                </td>
+                <td>
+                  <span th:text="${parc.cnpj}" class="px-6 py-4 font-regular text-charcoal"></span>
+                </td>
+                <td>
+                  <span th:text="${parc.email}" class="px-6 py-4 font-regular text-charcoal"></span>
+                </td>
                 <td class="flex w-auto justify-end gap-4 px-6 py-4 font-regular text-charcoal">
                   <a x-data="{ tooltip: 'Delete' }" th:href="@{delete/{id}(id=${parc.id})}" th:method="delete">
                     <svg data-modal-target="popup-modal" data-modal-toggle="popup-modal" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -118,7 +126,8 @@
                             d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                     </svg>
                   </a>
-                  <a href="#"><ion-icon
+                  <a th:href="@{dados/{id}(id=${parc.id})}"
+                     th:method="get"><ion-icon
                           class="text-charcoal h-[25px] w-[25px] transition-colors duration-200 hover:text-sea-green"
                           name="information-circle-outline"></ion-icon></a>
                 </td>

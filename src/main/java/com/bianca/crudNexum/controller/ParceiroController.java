@@ -4,8 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,16 +27,17 @@ public class ParceiroController {
     }
 
     // Adiciona novo parceiro
-    @PostMapping("/add")
-    public String createParceiro(@Valid Parceiro parceiro, BindingResult result) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String createParceiro(Parceiro parceiro) {
 
-        if (result.hasFieldErrors()) {
-            return "redirect:/cadastro";
+        try {
+            parcRepository.save(parceiro);
+        } catch (DataIntegrityViolationException e) {
+            return "errorDuplicate";
         }
 
-        parcRepository.save(parceiro);
-
         return "redirect:/visualizar";
+
     }
 
     // Acessa o formulario de edição
@@ -63,6 +63,7 @@ public class ParceiroController {
         return "redirect:/visualizar";
     }
 
+    // Deleta o parceiro
     @GetMapping("delete/{id}")
     @CacheEvict(value = "parceiro", allEntries = true)
     public String delete(@PathVariable(name = "id") int id, Model model) {
@@ -72,6 +73,17 @@ public class ParceiroController {
 
         parcRepository.delete(parceiro);
         return "redirect:/visualizar";
+    }
+
+    // Mostra tela de dados do parceiro
+    @GetMapping("dados/{id}")
+    public String dadosParceiro(Model model, @PathVariable(name = "id") int id) {
+
+        Parceiro parceiro = parcRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("parceiro", parceiro);
+        return "dados";
     }
 
 }

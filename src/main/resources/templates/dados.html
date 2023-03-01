@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap"
+          rel="stylesheet">
+  <link rel="icon" href="https://nexum.com.br/wp-content/themes/nexum/favicon.ico" type="image/x-icon">
+  <title>Parceiros | Dados</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body class="bg-white-smoke overflow-x-hidden">
+
+<div class="container">
+  <header class="flex items-center justify-between flex-wrap w-screen h-14 bg-[#0f1759]">
+    <a class="ml-10 w-36" href="https://nexum.com.br/"><img
+            src="https://nexum.com.br/wp-content/themes/nexum/logo-nexum.png" alt="Nexum logo"></a>
+    <nav>
+      <ul class="flex gap-10 mr-10 text-white font-montserrat text-md font-medium">
+        <li class="transition-colors duration-200 hover:text-sea-green"><a href="/">Visualizar</a></li>
+        <li class="text-sea-green"><a href="#">Cadastrar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="flex w-screen mt-8 items-center justify-center font-montserrat">
+    <div id="form" class="flex flex-col md:w-[1000px] h-auto rounded-sm shadow-lg bg-white">
+
+      <div id="form-title"
+           class="flex items-center justify-center font-medium text-xl text-white bg-sea-green h-12 rounded-t-md">
+        Parceiro Nexum
+      </div>
+
+      <form action="/visualizar" th:object="${parceiro}" th:action="@{/update/{id}(id=${parceiro.id})}" method="post" id="form-content" class="flex flex-col flex-wrap gap-4 my-8 mx-12">
+        <div id="form-inputs" class="flex justify-between gap-10 font-montserrat">
+
+          <div id="form-inputs-column-1" class="w-3/5 flex flex-col gap-5">
+            <div id="name-input">
+              <label class="block mb-2 text-md text-charcoal" for="name">Nome</label>
+              <input th:value="${parceiro.name}" type="text" name="name" id="name"
+                     class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                     placeholder="Digite o nome/razão social" disabled>
+            </div>
+
+            <div id="documents-input-group" class="flex w-full justify-between">
+              <div id="user-type-select" class="w-[30%]">
+                <label for="userType" class="block mb-2 text-md text-charcoal">Tipo de
+                  pessoa</label>
+                <select th:field="*{userType}" name="userType" id="userType"
+                        class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" disabled>
+                  <option value="PESSOAFISICA">Pessoa Física</option>
+                  <option value="PESSOAJURIDICA">Pessoa Jurídica</option>
+                </select>
+              </div>
+              <div id="cpf-cnpj-input-group" class="w-auto">
+                <div id="cpf-input" class="w-full">
+                  <label for="cpf" class="block mb-2 text-md text-charcoal">CPF</label>
+                  <input th:value="${parceiro.cpf}" type="text" name="cpf" id="cpf"
+                         class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" disabled>
+                </div>
+                <div id="cnpj-input" class="w-full" hidden>
+                  <label for="cnpj" class="block mb-2 text-md text-charcoal">CNPJ</label>
+                  <input th:value="${parceiro.cnpj}" type="text" name="cnpj" id="cnpj"
+                         class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" disabled>
+                </div>
+              </div>
+              <div id="cep-input" class="w-[30%]">
+                <label for="cep" class="block mb-2 text-md text-charcoal">CEP</label>
+                <input th:value="${parceiro.cep}" type="text" name="cep" id="cep"
+                       class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                       placeholder="Digite o CEP" disabled>
+              </div>
+            </div>
+
+            <div id="logradouro-input">
+              <label for="logradouro" class="block mb-2 text-md text-charcoal">Logradouro</label>
+              <input th:value="${parceiro.logradouro}" type="text" name="logradouro" id="logradouro"
+                     class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 focus:outline-none" disabled>
+            </div>
+
+            <div id="city-uf-input-group" class="flex w-100% justify-between">
+              <div id="city-input" class="w-[47.5%]">
+                <label for="cidade" class="block mb-2 text-md text-charcoal">Cidade</label>
+                <input th:value="${parceiro.cidade}" type="text" name="cidade" id="cidade"
+                       class="block w-full bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 focus:outline-none" disabled>
+              </div>
+              <div id="uf-select" class="w-[47.5%]">
+                <label for="uf" class="block mb-2 text-md text-charcoal">UF</label>
+                <select th:field="*{uf}" name="uf" id="uf"
+                        class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 focus:outline-none" disabled>
+                  <option value="none" selected></option>
+                  <option value="SP">São Paulo</option>
+                  <option value="AC">Acre</option>
+                  <option value="AM">Amazonas</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="BA">Bahia</option>
+                  <option value="CE">Ceará</option>
+                  <option value="DF">Distrito Federal</option>
+                  <option value="ES">Espírito Santo</option>
+                  <option value="GO">Goiás</option>
+                  <option value="MA">Maranhão</option>
+                  <option value="MT">Mato Grosso</option>
+                  <option value="MS">Mato Grosso do Sul</option>
+                  <option value="MG">Minas Gerais</option>
+                  <option value="PA">Pará</option>
+                  <option value="PB">Paraíba</option>
+                  <option value="PR">Paraná</option>
+                  <option value="PE">Pernambuco</option>
+                  <option value="PI">Piauí</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                  <option value="RN">Rio Grande do Norte</option>
+                  <option value="RS">Rio Grande do Sul</option>
+                  <option value="RO">Rondônia</option>
+                  <option value="RR">Roraima</option>
+                  <option value="SC">Santa Catarina</option>
+                  <option value="SE">Sergipe</option>
+                  <option value="TO">Tocantins</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div id="form-inputs-column-2" class="flex flex-col gap-5 w-2/5 h-[426px]">
+            <div id="email-input">
+              <label for="email" class="block mb-2 text-md text-charcoal">E-mail</label>
+              <input th:value="${parceiro.email}" type="email" name="email" id="email"
+                     class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                     placeholder="Digite o E-mail" disabled>
+            </div>
+
+            <div id="number-input">
+              <label for="numero" class="block mb-2 text-md text-charcoal">Número
+                (residência/prédio)</label>
+              <input th:value="${parceiro.numero}" type="text" name="numero" id="numero"
+                     class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring"
+                     placeholder="Ex: 225" disabled>
+            </div>
+
+            <div id="bairro-input">
+              <label for="bairro" class="block mb-2 text-md text-charcoal">Bairro</label>
+              <input th:value="${parceiro.bairro}" type="text" name="bairro" id="bairro"
+                     class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 focus:outline-none" disabled>
+            </div>
+
+            <div id="form-buttons" class="flex justify-end mt-auto w-full text-md font-medium">
+              <button id="return-btn" type="button" onclick="window.location.href='/visualizar'"
+                      class="border shadow-sm border-sea-green text-sea-green rounded-lg w-[150px] px-10 py-2.5 text-center transition-colors duration-200 hover:text-white hover:border-white hover:bg-sea-green">Voltar</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+
+  </main>
+
+</div>
+
+</body>
+
+</html>

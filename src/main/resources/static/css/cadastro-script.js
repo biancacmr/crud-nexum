@@ -9,6 +9,19 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+    // UF Select começa desativado para impedir o usuário de selecionar uma opção
+    $('#uf').prop('disabled', true);
+
+    // UF Select é ativado novamente no envio do formulário para ser enviado por POST para o BD
+    $('#form-content').on('submit', function() {
+        $('#uf').prop('disabled', false);
+    });
+
+    // Retonar a homepage
+    $('#homepage').click(function(){
+        window.location.href='/visualizar';
+    })
+
     // Apaga os dados inseridos no cpf/cnpj quando outra opção é selecionada
     function clearCpfInput() { $('#cpf').val(""); }
     function clearCnpjInput() { $('#cnpj').val(""); }
@@ -17,33 +30,36 @@ $(document).ready(function () {
     function getUserType(type) {
 
         // Quando a opção "Pessoa Física" é selecionada, o input de CPF se torna vísivel
-        if (type == 'pessoa-fisica') {
+        if (type == 'PESSOAFISICA') {
             $('#cpf-input').show();
             $('#cnpj-input').hide();
             clearCnpjInput();
+
             // Torna o campo de CPF obrigatório
-            $('#cpf-input').prop("required", "true");
-            $('#cnpj-input').prop("required", "false");
+            $('#cpf').prop("required", "true");
+            $('#cnpj').prop("required", "false");
 
         }
 
         // Quando a opção "Pessoa Jurídica" é selecionada, o input de CNPJ se torna vísivel
-        if (type == 'pessoa-juridica') {
+        if (type == 'PESSOAJURIDICA') {
             $('#cnpj-input').show();
             $('#cpf-input').hide();
             clearCpfInput();
+
             // Torna o campo de CNPJ obrigatório
-            $('#cpf-input').prop('required', false);
-            $('#cnpj-input').prop('required', true);
+            $('#cpf').prop('required', false);
+            $('#cnpj').prop('required', true);
         }
 
     }
 
     // Executa a função getUserType quando alguma opção da tag select é selecionada, e envia para ela o valor do select
-    $(document).on('change', '#user-type', function () {
+    $(document).on('change', '#userType', function () {
         getUserType($(this).val());
     });
 
+    // Validação do CPF (se ele é um cpf válido)
     $('#cpf').blur(function () {
         let cpf = $(this).val().replace(/\D/g, '').toString();
 
@@ -99,6 +115,7 @@ $(document).ready(function () {
 
     })
 
+    // Validação do CNPJ (se ele é um cnpj válido)
     $('#cnpj').blur(function () {
         let cnpj = $(this).val().replace(/\D/g, '').toString();
 
@@ -158,10 +175,10 @@ $(document).ready(function () {
     function limpa_formulário_cep() {
         // Limpa valores do formulário de cep.
         $("#cep").val("");
-        $("#city").val("");
-        $("#neighborhood").val("");
-        $("#uf").val("");
-        $("#public-place").val("");
+        $("#cidade").val("");
+        $("#bairro").val("");
+        $("#UF").val("");
+        $("#logradouro").val("");
     }
 
     $('#cep').blur(function () {
@@ -177,9 +194,9 @@ $(document).ready(function () {
             if (validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                $("#neighborhood").val("...");
-                $("#city").val("...");
-                $("#public-place").val("...");
+                $("#bairro").val("...");
+                $("#cidade").val("...");
+                $("#logradouro").val("...");
                 $("#uf").val("...");
 
                 //Consulta o webservice viacep.com.br/
@@ -187,16 +204,18 @@ $(document).ready(function () {
 
                     if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
-                        $("#public-place").val(dados.logradouro);
-                        $("#neighborhood").val(dados.bairro);
-                        $("#city").val(dados.localidade);
+                        $("#logradouro").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#cidade").val(dados.localidade);
                         $("#uf").val(dados.uf);
+
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
                         limpa_formulário_cep();
                         alert("CEP inválido.");
                     }
+
                 });
             } //end if.
             else {
@@ -213,9 +232,10 @@ $(document).ready(function () {
             $('#cep').css("border-color", "#d1d5db");
             $('#cep').css("--tw-ring-color", "#00e0d1");
         }
+
     })
 
-    $('#submit-btn').click(function () {
+    $('#submit-btn').click(function submit(type) {
         if (!$('#name').val()) {
             $('#name').css("border-color", "#ED2939");
             $('#name').css("--tw-ring-color", "transparent");
@@ -245,17 +265,17 @@ $(document).ready(function () {
             $('#cep').css("--tw-ring-color", "#00e0d1");
         }
 
-        if (!$('#number').val()) {
-            $('#number').css("border-color", "#ED2939");
-            $('#number').css("--tw-ring-color", "transparent");
+        if (!$('#numero').val()) {
+            $('#numero').css("border-color", "#ED2939");
+            $('#numero').css("--tw-ring-color", "transparent");
 
         }
         else {
-            $('#number').css("border-color", "#d1d5db");
-            $('#number').css("--tw-ring-color", "#00e0d1");
+            $('#numero').css("border-color", "#d1d5db");
+            $('#numero').css("--tw-ring-color", "#00e0d1");
         }
 
-        if ($('#user-type').val() == 'pessoa-fisica') {
+        if ($('#userType').val() == 'PESSOAFISICA') {
             if (!$('#cpf').val()) {
                 $('#cpf').css("border-color", "#ED2939");
                 $('#cpf').css("--tw-ring-color", "transparent");
@@ -276,50 +296,36 @@ $(document).ready(function () {
             }
         }
 
+
+
     })
 
     $('#clear-btn').click(function () {
-        $('#cpf-input').show();
         $('#cnpj-input').hide();
+        $('#cpf-input').show();
 
         $('#name').css("border-color", "#d1d5db");
         $('#name').css("--tw-ring-color", "#00e0d1");
-        $('#cpf').css("border-color", "#d1d5db");
-        $('#cpf').css("--tw-ring-color", "#00e0d1");
-        $('#cnpj').css("border-color", "#d1d5db");
-        $('#cnpj').css("--tw-ring-color", "#00e0d1");
-        $('#cep').css("border-color", "#d1d5db");
-        $('#cep').css("--tw-ring-color", "#00e0d1");
+
         $('#email').css("border-color", "#d1d5db");
         $('#email').css("--tw-ring-color", "#00e0d1");
-        $('#number').css("border-color", "#d1d5db");
-        $('#number').css("--tw-ring-color", "#00e0d1");
-    })
 
-    $(".form-content").submit(function(event) {
-        event.preventDefault();
+        $('#name').css("border-color", "#d1d5db");
+        $('#name').css("--tw-ring-color", "#00e0d1");
 
-        var formData = {
-            name: $(".name").val(),
-            email: $(".email").val(),
-            cpf: $(".cpf").val(),
-            cep: $(".cep").val(),
-            logradouro: $(".public-place").val(),
-            city: $(".city").val(),
-            bairro: $(".neighbourhood").val(),
-            houseNumber: $(".number").val()
-        };
+        $('#cep').css("border-color", "#d1d5db");
+        $('#cep').css("--tw-ring-color", "#00e0d1");
 
-        $.ajax({
-            type: "POST",
-            url: "./add",
-            data: formData,
-            dataType: 'json',
-        }).done(function (data) {
-                console.log(data);
-        });
+        $('#numero').css("border-color", "#d1d5db");
+        $('#numero').css("--tw-ring-color", "#00e0d1");
 
+        $('#cpf').css("border-color", "#d1d5db");
+        $('#cpf').css("--tw-ring-color", "#00e0d1");
+
+        $('#cnpj').css("border-color", "#d1d5db");
+        $('#cnpj').css("--tw-ring-color", "#00e0d1");
 
     })
 
 })
+
