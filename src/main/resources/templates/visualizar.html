@@ -85,8 +85,7 @@
               <thead class="bg-gray-50">
               <tr>
                 <th scope="col" class="px-6 py-4 font-normal text-table-title">Nome</th>
-                <th scope="col" class="px-6 py-4 font-normal text-table-title">CPF</th>
-                <th scope="col" class="px-6 py-4 font-normal text-table-title">CNPJ</th>
+                <th scope="col" class="px-6 py-4 font-normal text-table-title">CPF/CNPJ</th>
                 <th scope="col" class="px-6 py-4 font-normal text-table-title">E-mail</th>
                 <th scope="col" class="px-6 py-4 font-normal text-table-title"></th>
               </tr>
@@ -97,10 +96,10 @@
                 <td>
                   <span th:text="${parc.name}" class="px-6 py-4 font-regular text-charcoal"></span>
                 </td>
-                <td>
+                <td th:if="${parc.userType == T(com.bianca.crudNexum.model.ParceiroTipo).PESSOAFISICA}">
                   <span th:text="${parc.cpf}" class="px-6 py-4 font-regular text-charcoal"></span>
                 </td>
-                <td>
+                <td th:unless="${parc.userType == T(com.bianca.crudNexum.model.ParceiroTipo).PESSOAFISICA}">
                   <span th:text="${parc.cnpj}" class="px-6 py-4 font-regular text-charcoal"></span>
                 </td>
                 <td>

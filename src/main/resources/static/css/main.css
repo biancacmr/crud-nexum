@@ -281,6 +281,10 @@ Remove the inner padding in Chrome and Safari on macOS.
   -webkit-appearance: none;
 }
 
+.h-full{
+    height: 100%;
+}
+
 /*
 1. Correct the inability to style clickable types in iOS and Safari.
 2. Change font properties to `inherit` in Safari.
@@ -599,6 +603,14 @@ video {
   margin-top: 2rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
 .mt-auto {
   margin-top: auto;
 }
@@ -639,6 +651,10 @@ video {
   height: 1.5rem;
 }
 
+.h-36{
+  height: 9rem;
+}
+
 .h-\[25px\] {
   height: 25px;
 }
@@ -667,8 +683,16 @@ video {
   width: 1.5rem;
 }
 
+.w-12 {
+    width: 3rem;
+}
+
 .w-\[1200px\] {
   width: 1200px;
+}
+
+.w-\[600px\] {
+  width: 600px;
 }
 
 .w-\[150px\] {
@@ -726,6 +750,11 @@ video {
 .items-center {
   align-items: center;
 }
+
+.justify-self-start {
+    justify-self: start;
+}
+
 
 .justify-end {
   justify-content: flex-end;
@@ -947,6 +976,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-lg {
+font-size: 1.125rem; /* 18px */
+line-height: 1.75rem; /* 28px */
+}
+
 .font-medium {
   font-weight: 500;
 }
@@ -987,6 +1021,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-red {
+    --tw-text-opacity: 1;
+    color: rgb(206 32 41 / var(--tw-text-opacity));
 }
 
 .shadow-lg {

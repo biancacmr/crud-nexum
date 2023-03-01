@@ -31,7 +31,6 @@
 
       <div id="form-title"
            class="flex items-center justify-center font-medium text-xl text-white bg-sea-green h-12 rounded-t-md">
-        <a class="cursor-pointer" id="homepage"><ion-icon name="return-down-back-outline" class="text-white h-6 w-6 ml-20"></ion-icon></a>
         Parceiro Nexum
       </div>
 
@@ -57,12 +56,12 @@
                 </select>
               </div>
               <div id="cpf-cnpj-input-group" class="w-auto">
-                <div id="cpf-input" class="w-full">
+                <div th:if="${parceiro.userType == T(com.bianca.crudNexum.model.ParceiroTipo).PESSOAFISICA}" id="cpf-input" class="w-full">
                   <label for="cpf" class="block mb-2 text-md text-charcoal">CPF</label>
                   <input th:value="${parceiro.cpf}" type="text" name="cpf" id="cpf"
                          class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" disabled>
                 </div>
-                <div id="cnpj-input" class="w-full" hidden>
+                <div th:unless="${parceiro.userType == T(com.bianca.crudNexum.model.ParceiroTipo).PESSOAFISICA}" id="cnpj-input" class="w-full">
                   <label for="cnpj" class="block mb-2 text-md text-charcoal">CNPJ</label>
                   <input th:value="${parceiro.cnpj}" type="text" name="cnpj" id="cnpj"
                          class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" disabled>

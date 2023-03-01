@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
 
 @Entity
 @Table(name="parceiros")
@@ -21,11 +22,7 @@ public class Parceiro {
     @NotNull
     @Column(unique=true)
     private String email;
-    @Column(unique=true)
-
     private String cpf;
-    @Column(unique=true)
-
     private String cnpj;
     @NotNull
     private String cep;
@@ -38,14 +35,14 @@ public class Parceiro {
 
     @NotNull
     private String bairro;
-
+    @NotNull
     @Enumerated(EnumType.STRING)
     private ParceiroTipo userType;
 
     public void setType(ParceiroTipo userType) {
         this.userType = userType;
     }
-
+    @NotNull
     @Enumerated(EnumType.STRING)
     private ParceiroUF uf;
 
