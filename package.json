@@ -1,8 +1,8 @@
 {
   "name": "crud",
   "version": "1.0.0",
-  "description": "Spring Boot + Thymeleaf + Bootstrap + MySQL \r ![Alt text](/img1.jpg?raw=true \"Title\")\r ![Alt text](/img2.jpg?raw=true \"Title\")",
-  "main": "index.js",
+  "description": "Crud de pessoas usando HTML, CSS, Tailwind, Jquery, Java, Thymeleaf e Spring Boot",
+  "main": "visualizar.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
