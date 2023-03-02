@@ -47,8 +47,8 @@ $(document).ready(function () {
             clearCpfInput();
 
             // Torna o campo de CNPJ obrigatório
-            $('#cpf').prop('required', false);
-            $('#cnpj').prop('required', true);
+            $('#cpf').prop('required', "false");
+            $('#cnpj').prop('required', "true");
         }
 
     }
