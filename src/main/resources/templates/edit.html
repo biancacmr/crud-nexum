@@ -10,10 +10,6 @@
     <link rel="icon" href="https://nexum.com.br/wp-content/themes/nexum/favicon.ico" type="image/x-icon">
     <title>Editar parceiro</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
-    <script src="https://code.jquery.com/jquery-3.6.3.js"
-        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script type="text/javascript" th:src="@{/css/jquery.mask.min.js}"></script>
-    <script type="text/javascript" th:src="@{/css/edit-script.js}"></script>
 </head>
 
 <body class="bg-white-smoke overflow-x-hidden">
@@ -54,21 +50,21 @@
                                     <label for="userType" class="block mb-2 text-md text-charcoal">Tipo de
                                         pessoa</label>
                                     <select th:field="*{userType}" name="userType" id="userType"
-                                        class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" required>
+                                        class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" readonly>
                                         <option value="PESSOAFISICA">Pessoa Física</option>
                                         <option value="PESSOAJURIDICA">Pessoa Jurídica</option>
                                     </select>
                                 </div>
                                 <div id="cpf-cnpj-input-group" class="w-auto">
-                                    <div th:if="${parceiro.userType == T(com.bianca.crudNexum.model.ParceiroTipo).PESSOAFISICA}" id="cpf-input" class="w-full">
+                                    <div id="cpf-input" class="w-full">
                                         <label for="cpf" class="block mb-2 text-md text-charcoal">CPF</label>
-                                        <input th:value="${parceiro.cpf}" type="text" name="cpf" id="cpf"
-                                            class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" required>
+                                        <input th:field="${parceiro.cpf}" type="text" name="cpf" id="cpf"
+                                            class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:outline-none" readonly>
                                     </div>
-                                    <div th:unless="${parceiro.userType == T(com.bianca.crudNexum.model.ParceiroTipo).PESSOAFISICA}" id="cnpj-input" class="w-full" hidden>
+                                    <div id="cnpj-input" class="w-full" hidden>
                                         <label for="cnpj" class="block mb-2 text-md text-charcoal">CNPJ</label>
-                                        <input th:value="${parceiro.cnpj}" type="text" name="cnpj" id="cnpj"
-                                            class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring">
+                                        <input th:field="${parceiro.cnpj}" type="text" name="cnpj" id="cnpj"
+                                            class="block bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:outline-none" readonly>
                                     </div>
                                 </div>
                                 <div id="cep-input" class="w-[30%]">
@@ -167,6 +163,9 @@
         </main>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/edit-script.js}"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 

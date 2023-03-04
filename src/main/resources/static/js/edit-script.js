@@ -24,37 +24,44 @@ $(document).ready(function () {
         $('#uf').prop('disabled', false);
     });
 
+    // UF Select começa desativado para impedir o usuário de selecionar uma opção
+    $('#userType').prop('disabled', true);
+
+    // UF Select é ativado novamente no envio do formulário para ser enviado por POST para o BD
+    $('#form-content').on('submit', function() {
+        $('#userType').prop('disabled', false);
+    });
+
     // Apaga os dados inseridos no cpf/cnpj quando outra opção é selecionada
-        function clearCpfInput() { $('#cpf').val(""); }
-        function clearCnpjInput() { $('#cnpj').val(""); }
+    function clearCpfInput() { $('#cpf').val(""); }
+    function clearCnpjInput() { $('#cnpj').val(""); }
 
-        // Função que deixa visível o input de CPF e CPNJ dependendo da option seleciona na tag select user-type
-        function getUserType(type) {
+    // Função que deixa visível o input de CPF e CPNJ dependendo da option seleciona na tag select user-type
+    function getUserType(type) {
 
-            // Quando a opção "Pessoa Física" é selecionada, o input de CPF se torna vísivel
-            if (type == 'PESSOAFISICA') {
-                $('#cpf-input').show();
-                $('#cnpj-input').hide();
-                clearCnpjInput();
+        // Quando a opção "Pessoa Física" é selecionada, o input de CPF se torna vísivel
+        if (type == 'PESSOAFISICA') {
+            $('#cpf-input').show();
+            $('#cnpj-input').hide();
+            clearCnpjInput();
 
-                // Torna o campo de CPF obrigatório
-                $('#cpf').prop("required", "true");
-                $('#cnpj').prop("required", "false");
-
-            }
-
-            // Quando a opção "Pessoa Jurídica" é selecionada, o input de CNPJ se torna vísivel
-            if (type == 'PESSOAJURIDICA') {
-                $('#cnpj-input').show();
-                $('#cpf-input').hide();
-                clearCpfInput();
-
-                // Torna o campo de CNPJ obrigatório
-                $('#cpf').prop('required', "false");
-                $('#cnpj').prop('required', "true");
-            }
-
+            // Torna o campo de CPF obrigatório
+            $('#cpf').prop("required", "true");
+            $('#cnpj').prop("required", "false");
         }
+
+        // Quando a opção "Pessoa Jurídica" é selecionada, o input de CNPJ se torna vísivel
+        if (type == 'PESSOAJURIDICA') {
+            $('#cnpj-input').show();
+            $('#cpf-input').hide();
+            clearCpfInput();
+
+            // Torna o campo de CNPJ obrigatório
+            $('#cpf').prop("required", "false");
+            $('#cnpj').prop("required", "true");
+        }
+
+    }
 
         // Executa a função getUserType quando alguma opção da tag select é selecionada, e envia para ela o valor do select
         $(document).on('change', '#userType', function () {

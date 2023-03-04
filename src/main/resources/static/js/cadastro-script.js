@@ -47,16 +47,11 @@ $(document).ready(function () {
             clearCpfInput();
 
             // Torna o campo de CNPJ obrigatório
-            $('#cpf').prop('required', "false");
-            $('#cnpj').prop('required', "true");
+            $('#cpf').prop("required", "false");
+            $('#cnpj').prop("required", "true");
         }
 
     }
-
-    // Executa a função getUserType quando alguma opção da tag select é selecionada, e envia para ela o valor do select
-    $(document).on('change', '#userType', function () {
-        getUserType($(this).val());
-    });
 
     // Validação do CPF (se ele é um cpf válido)
     $('#cpf').blur(function () {

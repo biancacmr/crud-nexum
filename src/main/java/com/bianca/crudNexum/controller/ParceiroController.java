@@ -21,7 +21,7 @@ public class ParceiroController {
 
     // Acessa o formulario de cadastro
     @GetMapping("/cadastro")
-    public String parceirosCadastro(Parceiro parceiro) {
+    public String cadastroForm(Parceiro parceiro) {
 
         return "cadastro";
     }
@@ -32,12 +32,12 @@ public class ParceiroController {
 
         try {
             parcRepository.save(parceiro);
-        } catch (DataIntegrityViolationException e) {
+        }
+        catch (DataIntegrityViolationException e) {
             return "errorDuplicate";
         }
 
         return "redirect:/visualizar";
-
     }
 
     // Acessa o formulario de edição
