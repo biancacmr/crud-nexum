@@ -45,7 +45,7 @@
                         <div id="documents-input-group" class="flex w-full justify-between">
                             <div id="user-type-select" class="w-[30%]">
                                 <label for="userType" class="block mb-2 text-md text-charcoal">Tipo de pessoa</label>
-                                <select name="userType" id="userType" class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" required>
+                                <select th:value="${userType}" name="userType" id="userType" class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" required>
                                     <option value="PESSOAFISICA" selected>Pessoa Física</option>
                                     <option value="PESSOAJURIDICA">Pessoa Jurídica</option>
                                 </select>
@@ -53,7 +53,7 @@
                             <div id="cpf-cnpj-input-group" class="w-auto">
                                 <div id="cpf-input" class="w-full">
                                     <label for="cpf" class="block mb-2 text-md text-charcoal">CPF</label>
-                                    <input th:value="${cpf}" type="text" name="cpf" id="cpf" class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" placeholder="Insira o CPF" required>
+                                    <input th:value="${cpf}" type="text" name="cpf" id="cpf" class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5  focus:ring-light-sea-green focus:outline-none focus:ring" placeholder="Insira o CPF">
                                 </div>
                                 <div id="cnpj-input" class="w-full" hidden>
                                     <label for="cnpj" class="block mb-2 text-md text-charcoal">CNPJ</label>

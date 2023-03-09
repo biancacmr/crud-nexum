@@ -36,8 +36,8 @@ $(document).ready(function () {
             clearCnpjInput();
 
             // Torna o campo de CPF obrigatório
-            $('#cpf').prop("required", "true");
-            $('#cnpj').prop("required", "false");
+            $('#cpf').prop('required', true);
+            $('#cnpj').prop('required', false);
         }
 
         // Quando a opção "Pessoa Jurídica" é selecionada, o input de CNPJ se torna vísivel
@@ -47,8 +47,8 @@ $(document).ready(function () {
             clearCpfInput();
 
             // Torna o campo de CNPJ obrigatório
-            $('#cpf').prop('required', "false");
-            $('#cnpj').prop('required', "true");
+            $('#cpf').prop('required', false);
+            $('#cnpj').prop('required', true);
         }
 
     }

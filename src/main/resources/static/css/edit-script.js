@@ -28,7 +28,7 @@ $(document).ready(function () {
         function clearCpfInput() { $('#cpf').val(""); }
         function clearCnpjInput() { $('#cnpj').val(""); }
 
-        // Função que deixa visível o input de CPF e CPNJ dependendo da option seleciona na tag select user-type
+        // Função que deixa visível o input de CPF e CPNJ dependendo da option selecionada na tag select user-type
         function getUserType(type) {
 
             // Quando a opção "Pessoa Física" é selecionada, o input de CPF se torna vísivel
